@@ -1,14 +1,14 @@
 /* eslint-disable class-methods-use-this */
 class FavoriteMovieSearchPresenter {
-  constructor({ favoriteMovies }) {
+  constructor({ favoriteMovies, view }) {
+    this._view = view;
     this._listenToSearchRequestByUser();
     this._favoriteMovies = favoriteMovies;
   }
 
   _listenToSearchRequestByUser() {
-    this._queryElement = document.getElementById('query');
-    this._queryElement.addEventListener('change', (event) => {
-      this._searchMovies(event.target.value);
+    this._view.runWhenUserIsSearching((latestQuery) => {
+      this._searchMovies(latestQuery);
     });
   }
 
