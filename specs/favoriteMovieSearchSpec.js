@@ -72,6 +72,21 @@ describe('Searching movies', () => {
       expect(document.querySelectorAll('.movie__title').item(0).textContent).toEqual('-');
     });
 
+    it('should show - when the movie returned does not contain a title', (done) => {
+      document.getElementById('movie-search-container').addEventListener('movies:searched:updated', () => {
+        const movieTitles = document.querySelectorAll('.movie__title');
+        expect(movieTitles.item(0).textContent).toEqual('-');
+
+        done();
+      });
+
+      favoriteMovies.searchMovies.withArgs('film a').and.returnValues([
+        { id: 444 },
+      ]);
+
+      searchMovies('film a');
+    });
+
     it('should show the movies found by Favorite Movies', (done) => {
       document.getElementById('movie-search-container').addEventListener('movies:searched:updated', () => {
         expect(document.querySelectorAll('.movie').length).toEqual(3);
