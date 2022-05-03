@@ -4,24 +4,15 @@ import { createMovieItemTemplate } from '../../templates/template-creator';
 class FavoriteMovieSearchView {
   getTemplate() {
     return `
-    <div id="movie-search-container">
-        <input id="query" type="text">
-        <div class="movie-result-container">
-          <ul class="movies">
-          </ul>
-        </div>
-      </div>
-    `;
-  }
-
-  getFavoriteMovieTemplate() {
-    return `
-      <div class="content">
-        <h2 class="content__heading">Your Liked Movie</h2>
-        <div id="movies" class="movies">
-        
-        </div>
-      </div>
+    <div class="content">
+     <input id="query" type="text">
+     <h2 class="content__heading">Your Liked Movie</h2>
+         <div id="movie-search-container">
+             <div id="movies" class="movies">
+                
+             </div>
+         </div>
+     </div>
     `;
   }
 
@@ -39,26 +30,30 @@ class FavoriteMovieSearchView {
         (carry, movie) => carry.concat(`<li class="movie"><span class="movie__title">${movie.title || '-'}</span></li>`), '',
       );
     } else {
-      html = '<div class="movies__not__found">Film tidak ditemukan</div>';
+      html = this._getEmptyMovieTemplate();
     }
 
     document.querySelector('.movies').innerHTML = html;
 
-    document.getElementById('movie-search-container').dispatchEvent(new Event('movies:searched:updated'));
+    document.getElementById('movies').dispatchEvent(new Event('movies:updated'));
   }
 
-  showFavoriteMovies(movies) {
+  showFavoriteMovies(movies = []) {
     let html;
 
     if (movies.length) {
       html = movies.reduce((carry, movie) => carry.concat(createMovieItemTemplate(movie)), '');
     } else {
-      html = '<div class="movie-item__not__found"></div>';
+      html = this._getEmptyMovieTemplate();
     }
 
     document.getElementById('movies').innerHTML = html;
 
     document.getElementById('movies').dispatchEvent(new Event('movies:updated'));
+  }
+
+  _getEmptyMovieTemplate() {
+    return '<div class="movie-item__not__found">Tidak ada film untuk ditampilkan</div>';
   }
 }
 

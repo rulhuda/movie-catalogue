@@ -34,7 +34,7 @@ class FavoriteMovieSearchPresenter {
         '',
       );
     } else {
-      html = '<div class="movies__not__found">Film tidak ditemukan</div>';
+      html = '<div class="movie-item__not__found">Film tidak ditemukan</div>';
     }
 
     document.querySelector('.movies').innerHTML = html;

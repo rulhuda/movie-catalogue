@@ -45,6 +45,12 @@ describe('Searching movies', () => {
       expect(favoriteMovies.searchMovies).toHaveBeenCalledWith('film a');
     });
 
+    it('should show the found movies', () => {
+      searchMovies('film a');
+
+      expect(favoriteMovies.searchMovies).toHaveBeenCalledWith('film a');
+    });
+
     it('should show - when the movie returned does not contain a title', (done) => {
       document.getElementById('movie-search-container').addEventListener('movies:searched:updated', () => {
         const movieTitles = document.querySelectorAll('.movie__title');
@@ -122,7 +128,7 @@ describe('Searching movies', () => {
   describe('when no favorite movies could be found', () => {
     it('should show the empty message', (done) => {
       document.getElementById('movie-search-container').addEventListener('movies:searched:updated', () => {
-        expect(document.querySelectorAll('.movies__not__found').length).toEqual(1);
+        expect(document.querySelectorAll('.movie-item__not__found').length).toEqual(1);
         done();
       });
 
