@@ -23,19 +23,7 @@ class FavoriteMovieSearchView {
   }
 
   showMovies(movies) {
-    let html;
-
-    if (movies.length > 0) {
-      html = movies.reduce(
-        (carry, movie) => carry.concat(`<li class="movie"><span class="movie__title">${movie.title || '-'}</span></li>`), '',
-      );
-    } else {
-      html = this._getEmptyMovieTemplate();
-    }
-
-    document.querySelector('.movies').innerHTML = html;
-
-    document.getElementById('movies').dispatchEvent(new Event('movies:updated'));
+    this.showFavoriteMovies(movies);
   }
 
   showFavoriteMovies(movies = []) {
@@ -53,7 +41,7 @@ class FavoriteMovieSearchView {
   }
 
   _getEmptyMovieTemplate() {
-    return '<div class="movie-item__not__found">Tidak ada film untuk ditampilkan</div>';
+    return '<div class="movie-item__not__found movies__not__found">Tidak ada film untuk ditampilkan</div>';
   }
 }
 
