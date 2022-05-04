@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+import '@fortawesome/fontawesome-free/js/all';
 import '../styles/style.css';
 import '../styles/responsive.css';
 import App from './views/app';

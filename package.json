@@ -42,6 +42,7 @@
     "whatwg-fetch": "^3.2.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "idb": "^5.0.4",
     "regenerator-runtime": "^0.13.5",
     "serviceworker-webpack-plugin": "^1.0.1"
