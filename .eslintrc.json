@@ -22,5 +22,5 @@
         "linebreak-style": 0,
         "no-new": 0
     },
-    "plugins": ["jasmine"]
+    "plugins": ["jasmine", "codeceptjs"]
 }
